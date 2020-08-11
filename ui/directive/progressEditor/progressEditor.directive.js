@@ -7,7 +7,16 @@ angular.module('kityminderEditor')
 				minder: '='
 			},
             replace: true,
-			link: function($scope) {
+			link: function($scope, element, attributes) {
+				// ctrl p 触发点击
+				$(document).on('keyup keydown', function(e){
+					if(e.ctrlKey && e.keyCode === 80){
+						element.find('li:last').click();
+						e.preventDefault();
+						return false;
+					}
+				});
+
 				var minder = $scope.minder;
 				var progresses = [];
 
